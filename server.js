@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -24,11 +25,9 @@ app.use((req,res,next)=>{
   next();
 });
 
-
-
-app.use((req,res,next)=>{
-  res.render('maintenance.hbs');
-});
+// app.use((req,res,next)=>{
+//   res.render('maintenance.hbs');
+// });
 
 app.get('/', (req,res)=>{
   res.render('home.hbs',{
@@ -44,14 +43,7 @@ app.get('/about', (req,res)=>{
   });
 });
 
-// app.get('/bad', (req,res)=>{
-//   res.send({
-//     name:'errorMessage',
-//     text: 'you went to wrong path... '
-//   });
-// });
 
-
-app.listen(3000, ()=>{
-  console.log('Server is set up on port 3000...');
+app.listen(port, ()=>{
+  console.log(`Server is set up on port ${port}...`);
 });
